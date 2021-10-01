@@ -5,22 +5,21 @@ services:
     
     balancer:
         build:
-            context: ./BalancerApp
+            context: .
             dockerfile: Dockerfile
         container_name: balancer
         ports:
             - "8000:6001"
             
     db:
-        image: mongo:latest
-        container_name: db
+        image: mongo:3.6.1
+        container_name: dbmongobalancer
         volumes:
             - mongodb:/data/db
             - mongodb_config:/data/configdb
         ports:
             - 27017:27017
         command: mongod
-
 
 volumes:
     mongodb:
